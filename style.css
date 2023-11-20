@@ -1,0 +1,73 @@
+body{
+    font-family: Helvetica;
+    font-size: 1rem;
+}
+
+.word {
+    border: 2px solid #000; /* 2px solid black border */
+    background-color: white;
+    color: white; /*makes word pop in smoothly*/
+
+    border-radius: 3px;
+    padding: 0px;
+    margin: 3px;
+    padding: 5px;
+    width: 1rem;
+    white-space: pre;
+    text-align: center;
+    display: inline-block;
+    transition: color 0.3s, background-color 0.3s; 
+}
+
+ .spacer{
+    padding: 0px;
+    margin: 0px;
+ }
+
+ #box{
+    margin: auto;
+    width: fit-content;
+ }
+
+
+ .center{
+    padding: 10px;
+    margin: auto;
+    width: fit-content;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    flex-direction:column;
+
+ }
+
+
+ input{
+    border: 2px solid #000; /* 2px solid black border */
+    border-radius: 3px;
+    font-family: Helvetica;
+    font-size: 1rem;
+    margin: 5px;
+    padding: 5px;
+    
+ }
+button{
+    margin: auto;
+    background-color: lightgrey;
+    border: 2px solid;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: Helvetica;
+    font-size: 1rem;
+    margin-top: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover{
+    background-color:lightslategray;
+}
+ #answer{
+    text-align: center;
+    white-space: pre;
+    margin: 5px;
+
+}
