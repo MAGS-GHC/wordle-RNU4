@@ -15,7 +15,7 @@ fetch(file_path)
 .then(response => response.text())
 .then(file_content => {
     const lines = file_content.split('\n');
-    for (var i = 0; i < lines.length; i++) {
+    for (let i = 0; i < lines.length; i++) {
         word_map[lines[i].trim()] = 1;
     }
     word_keys = Object.keys(word_map)
@@ -23,17 +23,17 @@ fetch(file_path)
 }).catch(error => console.error('Error fetching or reading file:', error.message));
 }get_data();
 
-for (var i = 0; i< max_row; i++){
-    for (var j = 0; j < word_max; j++){
+for (let i = 0; i< max_row; i++){
+    for (let j = 0; j < word_max; j++){
         box.innerHTML+=`<p id = 'p${i}_${j}' class='word'>${empty_char}</p>` 
     }
     box.innerHTML+="<p class = 'spacer'></p>"
 }
 
 function new_word(){ //remove answers
-    for (var i = 0; i < max_row; i++){
-        for (var j = 0; j < word_max; j++){
-            var element = document.getElementById(`p${i}_${j}`);
+    for (let i = 0; i < max_row; i++){
+        for (let j = 0; j < word_max; j++){
+            let element = document.getElementById(`p${i}_${j}`);
             element.textContent = empty_char
             element.style.backgroundColor = "white"
             element.style.color = "white"
@@ -64,7 +64,7 @@ function set_answer(){
         return
     }
 
-    for(var i = 0; i< word_max; i++){ //place answer into boxes
+    for(let i = 0; i< word_max; i++){ //place answer into boxes
         document.getElementById(`p${current_row}_${i}`).textContent = input.value[i];
     }
     
@@ -78,8 +78,8 @@ function set_answer(){
 }
 
 function color_answer(){
-    for(var i = 0; i < word_max; i++){
-        var element = document.getElementById(`p${current_row}_${i}`);
+    for(let i = 0; i < word_max; i++){
+        let element = document.getElementById(`p${current_row}_${i}`);
         if (element.textContent==word_answer[i]){ //green (letter is right position)
             element.style.backgroundColor = "limegreen";
         }else if (word_answer.includes(element.textContent)){ //yellow (contains letter)
