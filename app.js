@@ -3,9 +3,9 @@ var input = document.getElementById("input");
 var answer = document.getElementById("answer")
 var word_answer = ""
 const empty_char = " "
-const max_row = 6
+const max_column = 6
 const word_max = 5
-var current_row = 0;
+var current_column = 0;
 var word_map = {};
 var word_keys = [];
 const file_path = "./assets/valid-wordle-words.txt";
@@ -23,7 +23,7 @@ fetch(file_path)
 }).catch(error => console.error('Error fetching or reading file:', error.message));
 }get_data();
 
-for (let i = 0; i< max_row; i++){
+for (let i = 0; i< max_column; i++){
     for (let j = 0; j < word_max; j++){
         box.innerHTML+=`<p id = 'p${i}_${j}' class='word'>${empty_char}</p>` 
     }
@@ -31,7 +31,7 @@ for (let i = 0; i< max_row; i++){
 }
 
 function new_word(){ //remove answers
-    for (let i = 0; i < max_row; i++){
+    for (let i = 0; i < max_column; i++){
         for (let j = 0; j < word_max; j++){
             let element = document.getElementById(`p${i}_${j}`);
             element.textContent = empty_char
@@ -39,7 +39,7 @@ function new_word(){ //remove answers
             element.style.color = "white"
         }
     }
-    current_row = 0; //reset row
+    current_column = 0; //reset column
     answer.textContent = empty_char
     word_answer = word_keys[Math.floor(Math.random() * word_keys.length)]
     console.log("Answer : "+word_answer)
@@ -47,14 +47,14 @@ function new_word(){ //remove answers
 
 input.addEventListener('keydown', function (event) {
     if (event.keyCode == 13) { // check enter key
-        if (current_row != max_row && answer.textContent == empty_char)set_answer() //still tries left
+        if (current_column != max_column && answer.textContent == empty_char)set_answer() //still tries left
         input.value = ""
     }
 });
 
 function inform_user(str){
     answer.textContent = str
-    //current_row = max_row+1; // already lost so no more tries
+    //current_column = max_column+1; // already lost so no more tries
 }
 
 function set_answer(){
@@ -65,21 +65,21 @@ function set_answer(){
     }
 
     for(let i = 0; i< word_max; i++){ //place answer into boxes
-        document.getElementById(`p${current_row}_${i}`).textContent = input.value[i];
+        document.getElementById(`p${current_column}_${i}`).textContent = input.value[i];
     }
     
-    color_answer();current_row++; //color it and go to next row
+    color_answer();current_column++; //color it and go to next column
 
     if (input.value == word_answer){
         inform_user("You guessed correct!")
-    }else if (current_row == max_row){ // you lose
+    }else if (current_column == max_column){ // you lose
         inform_user("Right answer was "+word_answer)
     }
 }
 
 function color_answer(){
     for(let i = 0; i < word_max; i++){
-        let element = document.getElementById(`p${current_row}_${i}`);
+        let element = document.getElementById(`p${current_column}_${i}`);
         if (element.textContent==word_answer[i]){ //green (letter is right position)
             element.style.backgroundColor = "limegreen";
         }else if (word_answer.includes(element.textContent)){ //yellow (contains letter)
